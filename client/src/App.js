@@ -21,6 +21,7 @@ function App() {
   .filter((value, index, array) => array.indexOf(value) === index);
 
   function getProducts() {
+    // fetch("https://bshopfullprojectversion.onrender.com/items")
     fetch("http://localhost:8000/items")
       .then((response) => response.json())
       .then((data) => {
