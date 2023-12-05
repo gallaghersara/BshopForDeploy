@@ -26,7 +26,7 @@ console.log("login");
 app.use(express.json());
 // app.use(express.urlencoded({extended:false}))
 app.use(cors());
-
+app.use(express.static('client/build'))
 mongoose.set("strictQuery", true);
 
 
@@ -45,7 +45,9 @@ app.use(passport.session());
 app.use('/',
 router);
 
-
+app.get("*",(req, res) => {
+  res.sendFile(__dirname+ "/client/build/index.html")
+} )
 mongoose
   .connect("mongodb://127.0.0.1:27017/gocodeShop", {
   // `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`,
