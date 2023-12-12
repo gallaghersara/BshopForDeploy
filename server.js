@@ -9,8 +9,8 @@ import dotenv from "dotenv";
 import router from "./routes/routes.js";
 import passport from "./routes/auth.js";
 
-dotenv.config()
-const {PORT,DB_USER,DB_PASS,DB_HOST,DB_NAME,SESSION_SECRET} = process.env;
+dotenv.config();
+const {MONGO_URI, PORT,DB_USER,DB_PASS,DB_HOST,DB_NAME,SESSION_SECRET} = process.env;
 
 
 // if (process.env.NODE_ENV !== 'production'){
@@ -49,8 +49,7 @@ app.get("*",(req, res) => {
   res.sendFile(__dirname+ "/client/build/index.html")
 } )
 mongoose
-  .connect("mongodb://127.0.0.1:27017/gocodeShop", {
-  // `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`,
+    .connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`, {
   useNewUrlParser: true,
     useUnifiedTopology: true,
   })
